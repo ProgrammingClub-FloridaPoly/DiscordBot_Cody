@@ -7,7 +7,11 @@ Once you clone the repo to your local computer youwill need the following
 
 1) nodes_modules (folder)
 
-If you already have npm, please enter the following command: npm init
+If you already have npm, please enter the following command: 
+'''
+npm init
+npm install discord.js
+'''
 
 2) .env (file)
 
