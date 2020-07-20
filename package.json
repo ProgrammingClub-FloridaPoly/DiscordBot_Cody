@@ -1,0 +1,15 @@
+{
+  "name": "discordbotpc",
+  "version": "1.0.0",
+  "description": "Programming Club at Florida Poly's Discord server bot",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jose Placeres",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv-flow": "^3.2.0"
+  }
+}
