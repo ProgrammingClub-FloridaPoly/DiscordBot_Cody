@@ -31,6 +31,7 @@ client.once('ready', () => {
     var channelID = config.testingChat;
     var hello = 'TESTING MODE!';
     client.channels.cache.get(channelID).send(hello);
+    
 });
 
 //makes bot listen to messages and commands
@@ -57,7 +58,7 @@ client.on('message', message=>{
     console.log('-------------------------------------');
     
 
-    
+
     //Dynamically analyze commands
     if (!client.commands.has(command)) 
     return message.channel.send('```>Error: Command does not exist.```');
