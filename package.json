@@ -4,6 +4,7 @@
   "description": "Programming Club at Florida Poly's Discord server bot",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jose Placeres",
