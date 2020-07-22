@@ -38,13 +38,11 @@ client.on('message', message=>{
 
     if(!message.content.startsWith(config.codeblock) || message.author.bot) return;
 
-    const inBlock = /[`\n]+/g;     //identifies ` and ENTER
+    const inBlock = /[`\n]+/g;
     const existing = message.content.replace(inBlock, ' ').trim();
 
     //only substrings out the code block quotes
-    const noBlock = message.content.substring(3, message.content.length -3);
     console.log('1) Message.content = ' + message.content);
-    console.log('2a) noBlock = ' + noBlock);
     console.log('2b) existing = :::' + existing + '::');
 
     const args = existing.slice(config.prefix.length).split(/ +/);
@@ -71,7 +69,6 @@ client.on('message', message=>{
     }
 
     //EMBED
-
 
 });
 
