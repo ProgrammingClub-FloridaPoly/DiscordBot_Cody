@@ -57,6 +57,7 @@ client.on('message', message=>{
     console.log('-------------------------------------');
     
 
+    
     //Dynamically analyze commands
     if (!client.commands.has(command)) 
     return message.channel.send('```>Error: Command does not exist.```');
