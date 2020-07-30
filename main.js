@@ -27,24 +27,27 @@ client.once('ready', () => {
     console.log('Cody is online!');
 
     // Accounces that to specific chat that it is online.
-    // var channelID = config.generalChat;
     var channelID = config.testingChat;
-    var hello = 'TESTING MODE!';
+    var hello = 'TESTING MODE: ACTIVATE LOCALLY!';
     client.channels.cache.get(channelID).send(hello);
-    
 });
 
 //makes bot listen to messages and commands
 client.on('message', message=>{
 
+    //checks if message has codeblock format
     if(!message.content.startsWith(config.codeblock) || message.author.bot) return;
 
+    //checks if message has Prefix command for CodyBot
+    if(!message.content.startsWith() || message.author.bot) return;
+
+    //finds unwanted characters (`, \n), replaces them with spaces, and removes spaces
     const inBlock = /[`\n]+/g;
     const existing = message.content.replace(inBlock, ' ').trim();
 
     //only substrings out the code block quotes
     console.log('1) Message.content = ' + message.content);
-    console.log('2b) existing = :::' + existing + '::');
+    console.log('2b) existing = :::' + existing + '::');    //check for start-end spaces
 
     const args = existing.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
@@ -62,6 +65,13 @@ client.on('message', message=>{
     //Dynamically analyze commands
     if (!client.commands.has(command)) 
     return message.channel.send('```>Error: Command does not exist.```');
+
+    // if (command === 'setup'){
+    //     //send attachment
+    //     const attachment = new Discord.MessageAttachment('./images/WelcomeBanner.gif');
+    //     message.channel.send("_Cody's image test", {files: ['./images/WelcomeBanner.gif']});
+
+    // }
 
     try {
         client.commands.get(command).execute(message, args);
