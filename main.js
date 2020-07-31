@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 require('dotenv-flow').config();
 
-//pulls content of .env
 const config = {
+    //you must create .env file (like .env_sample) and create values
     token: process.env.TOKEN,
     owner: process.env.OWNER,
     prefix: process.env.PREFIX,
@@ -26,11 +26,12 @@ for(const file of commandFiles){
 client.once('ready', () => {
     console.log('Cody is online!');
 
-    // Accounces that to specific chat that it is online.
-    var channelID = config.testingChat;
-    var hello = 'TESTING MODE: ACTIVATE LOCALLY!';
-    client.channels.cache.get(channelID).send(hello);
+    var userID = config.owner;
+    var hello = 'TESTING MODE: on Computer!\n💙💙💙';
+    client.users.cache.get(userID).send(hello);
+
 });
+
 
 //makes bot listen to messages and commands
 client.on('message', message=>{
@@ -38,8 +39,8 @@ client.on('message', message=>{
     //checks if message has codeblock format
     if(!message.content.startsWith(config.codeblock) || message.author.bot) return;
 
-    //checks if message has Prefix command for CodyBot
-    if(!message.content.startsWith() || message.author.bot) return;
+    // //checks if message has Prefix command for CodyBot
+    // if(!message.content.startsWith() || message.author.bot) return;
 
     //finds unwanted characters (`, \n), replaces them with spaces, and removes spaces
     const inBlock = /[`\n]+/g;
@@ -47,7 +48,7 @@ client.on('message', message=>{
 
     //only substrings out the code block quotes
     console.log('1) Message.content = ' + message.content);
-    console.log('2b) existing = :::' + existing + '::');    //check for start-end spaces
+    console.log('2) existing = :::' + existing + '::');    //check for start-end spaces
 
     const args = existing.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
@@ -56,28 +57,24 @@ client.on('message', message=>{
 //    console.log(message);   //returns message ID
 //    console.log(message.edits);     //returns attributes of message and channel
 //    console.log(typeof message);
-    console.log('3b) args = ' + args);
-    console.log('4b) command = ' + command);
+    var x = 0;
+    for (arg in args){
+        console.log('3.' + x + ') args = :::' + args[x] + ':::');
+        x++;
+    }
+    console.log('3) args = ' + args);
+    console.log('4) command = ' + command);
     console.log('-------------------------------------');
     
 
-
     //Dynamically analyze commands
-    if (!client.commands.has(command)) 
-    return message.channel.send('```>Error: Command does not exist.```');
-
-    // if (command === 'setup'){
-    //     //send attachment
-    //     const attachment = new Discord.MessageAttachment('./images/WelcomeBanner.gif');
-    //     message.channel.send("_Cody's image test", {files: ['./images/WelcomeBanner.gif']});
-
-    // }
+    if (!client.commands.has(command)) return message.channel.send('```> Error: Command does not exist.```');
 
     try {
-        client.commands.get(command).execute(message, args);
+        client.commands.get(command).execute(message, args, Discord);
     }catch (error) {
         console.error(error);
-        message.channel.send('```>Error: No response. Please try again.```');
+        message.channel.send('```> Error: No response. Please try again.```');
     }
 
     //EMBED
