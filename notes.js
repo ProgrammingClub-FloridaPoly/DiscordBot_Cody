@@ -4,7 +4,7 @@ List of TODOs
 []  Have Bot Message you for verification request (for Student ROLE)
 []  
 []  If error occures in CODY, message error and delete two messages.
-[]  
+[]  Add new emojis fast.
 []  
 []  
 []  
@@ -27,3 +27,8 @@ List of TODOs
         // if ( (isNaN(args) && args.length == 0) || x == 0)  x = 1:
 
         // var hasName = (name === 'true') ? 'Y' :'N';
+
+        //RECENT MESSAGE INFO for TESTING
+//    console.log('MESSAGE: ' + message);   //returns message ID
+//    console.log('MESSAGE.edits: ' + message.edits);     //returns attributes of message and channel
+//    console.log('TYPE: '+ typeof message);

@@ -1,7 +1,8 @@
+// IN DEVELOPMENT //
 
 module.exports = {
-    name: 'delete',
-    aliases: ["rm"],
+    name: 'request',
+    aliases: ["req"],
     description: "deletes up to 99 messages",
     execute(message, args){
 
@@ -17,7 +18,7 @@ module.exports = {
 
         if (x > 99) return message.channel.send('```> You cannot delete more than 99 messages at a time!```');
         message.channel.bulkDelete(x + 1).then(() => {
-            message.channel.send('```> CLEAR!```').then(message => message.delete({timeout: 3000}));
+            message.channel.send('```> CLEAR!```').then(message => message.delete({timeout: 2000}));
         }).catch((err) => {
             return message.channel.send('```> Error in Deleting Messages!\n> Please enter integer.```');
         })

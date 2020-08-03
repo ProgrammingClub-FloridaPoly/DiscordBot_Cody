@@ -39,8 +39,7 @@ client.on('message', message=>{
     //checks if message has codeblock format
     if(!message.content.startsWith(config.codeblock) || message.author.bot) return;
 
-    // //checks if message has Prefix command for CodyBot
-    // if(!message.content.startsWith() || message.author.bot) return;
+    //checks if message has Prefix command for CodyBot
 
     //finds unwanted characters (`, \n), replaces them with spaces, and removes spaces
     const inBlock = /[`\n]+/g;
@@ -53,10 +52,6 @@ client.on('message', message=>{
     const args = existing.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     
-    //MESSAGE INFO
-//    console.log(message);   //returns message ID
-//    console.log(message.edits);     //returns attributes of message and channel
-//    console.log(typeof message);
     var x = 0;
     for (arg in args){
         console.log('3.' + x + ') args = :::' + args[x] + ':::');
@@ -71,7 +66,7 @@ client.on('message', message=>{
     if (!client.commands.has(command)) return message.channel.send('```> Error: Command does not exist.```');
 
     try {
-        client.commands.get(command).execute(message, args, Discord);
+        client.commands.get(command).execute(message, args);
     }catch (error) {
         console.error(error);
         message.channel.send('```> Error: No response. Please try again.```');
