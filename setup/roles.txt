@@ -1,0 +1,43 @@
+**COMMUNITY ROLES**
+All the roles below are used to distinguish the various people on our server and in our community!
+
+@⭐ E-Board  - These hard-working folks are the executive board of Programming Club at Florida Poly.
+@🎬 Team Director - Directors lead their respective Teams of Programming Club to greatness! 
+@{team_name} - Teams that specializes in different areas of Programming Club. They work on various projects within their team. Student-verified members can go to #📺│channels to join a Team!
+@{coordinator_name} - Coordinators work with Team Directors and E-board to help Programming Club's goals.
+@🧙‍♂️ Advisor - Club Advisor and past E-board members who guide the current E-Board to the road not taken. 
+@🔥 Florida Poly Student - This coveted role is reverved only for Florida Poly students. Registration and verification is required. These get full access to our server. You can claim this role in #✅│registration.
+@👍 Member - This role is given to anyone who agrees to abide by our rules in the #🧾│rules channel. This role grants limited access to this server.
+
+
+**PARTICIPATION ROLES**
+You must meet certain criteria to recieve these roles. This list is constantly growing!
+
+@PhoenixHacks - This role is for students who participated in PhoenixHacks at Florida Poly.
+@{hackathon_name} - We create this role for those who venture out to other hackathons. You can request for one by demoing your project on this server!  
+@{competition_name} - This role is for those who participated in certain programming competitions. You can request for one to admin. 
+@MVP - This monthly role is awarded to our Most Valuable Programmer who goes above and beyond at Programming Club.
+@PhoenixPride - Members who attend 3 or more Florida Poly events. 
+@SocialLite - Members who attend 3 or more social gatherings outside of Florida Poly.
+@Keynote - Members who presented at a meeting at least once.
+
+
+**KNOWLEDGE ROLES**
+Users with any of the Hackcon roles are attending or speaking at MLH Hackcon VIII hosted by GitHub. 
+Users with any knowledge of the following:
+
+@Python
+@C
+@C++
+@C#
+@Java
+@Javascript
+@HTML
+@CSS
+@React
+@Node.js
+@Native
+@Bootstrap
+@Firebase
+@Azure
+@AWS

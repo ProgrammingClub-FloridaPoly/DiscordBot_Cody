@@ -1,0 +1,35 @@
+**INFORMATION**
+All the roles below are used to distinguish the various people on our server and in our community!
+
+#👋start-here - This channel contains an introduction to our community and purpose.
+#rules - Lays the rules of our server.
+#registration - To get full access to our channels, you must be a Florida Poly student. There is a verification process for this role.
+#roles - If you're ever unsure who to reach out to for what, check this channel for a reference.
+#channels - You are here! This is a list of all our channels so you know what the intended purpose of each is.
+#registration-desk - React here with a :thumbsup: to be granted our @member role and get access to more of our server. 
+#mlh-announcements - This channel is reserved for important community and Major League Hacking announcements. We encourage you to "follow" the channel!
+#new-member-events - Every time we add a new Member Event hackathon to our season, we'll post and promote them in this channel. If you're looking for the newest, freshest hackathons this is the place to be!
+
+
+**GENERAL CHANNELS**
+These channels are open to all of our @members. We'll be adding more soon!
+
+#ask-mlh - Need to ask the MLH crew something? This is the place!
+#general-chat - Want to just chat with other hackers or share something exciting, feel free to use this channel to do so.
+
+
+**HACKATHON CHANNELS**
+
+Each weekend we host a hackathon right here on the MLH Community Discord. These channels are for only accessible to folks who've checked in for the event.
+
+
+#the-high-noon-saloon - Claim each weekend's hackathon role in this channel by reacting with a :thumbsup: to the message here.
+#tip-from-the-barkeep - A collection of common questions and answers for our hackathons. Check here before you head to #ask-mlh 
+#announcements - This is our channel for hackathon announcements. We'll post any time there's an activity coming up that you can attend. 
+#wanted-posters - Tell the rest of the event who you are and why you're awesome! 
+#find-your-caravan - If you're looking for a team, this is the place to be. Post early and reach out to folks as needed until you've got your hackathon squad together.
+#learn-from-a-traveller - This is the best spot to discuss any of the workshops we're running over the course of the weekend. You can ask workshop specific questions here.
+#rodeos-and-duels - If our mini-events require you to post something, we'll ask you to place it here so we don't disturb the other hackers!
+#ask-an-old-timer - Get help on your project from our team of mentors and experts.
+#demo-my-hack - Post a link to your Devpost project here, and we'll try to watch your demo live on stream. 
+#joining-the-stream - If you want to talk about your project with our team on the livestream, we'll coordinate getting you joined up here.
