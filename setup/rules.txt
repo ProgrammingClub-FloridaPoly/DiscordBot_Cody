@@ -1,7 +1,7 @@
 **SERVER RULES**
 
-**1. Follow the Discord Community Guidelines and Terms Of Service: https://discordapp.com/guidelines **
-Florida Poly Students must also follow the Student Code of Conduct: https://floridapoly.edu/student-affairs/student-development/student-handbook-code-of-conduct.php 
+**1. Follow the Discord Community Guidelines and Terms Of Service: https://discordapp.com/guidelines**
+Florida Poly Students must also follow the Student Code of Conduct: https://floridapoly.edu/student-affairs/student-development/student-handbook-code-of-conduct.php
 
 **2. Be respectful. Do not be disruptive.**
 Respect all student members, guests, & bots, regardless of your liking towards them. Treat others the way you want to be treated.
@@ -18,14 +18,14 @@ There are specific channels that will allow you to discuss certain topics. If yo
 **6. No blank, invisible, or offensive names/nicknames. No offensive profile pictures.**
 You will be asked to change your name or picture if they are deemed inappropriate.
 
-**7. All members shall have limited access until they are verified as Florida Poly Students. All students members shall display their full name as nickname at all times.**
+**7. All members shall have limited access until verified as Florida Poly Students. Nicknames shall be maintained in the following format: firstName + last initial (ex: Cody P.)**
 You will lose certain roles/privileges on this server.
 
-**8. Do not provide or request help on projects that may break laws, breach terms of services, or be considered malicious, inappropriate, or academically dishonest.
+**8. Do not provide or request help on projects that may break laws, breach terms of services, or be considered malicious, inappropriate, or academically dishonest.**
 
 Admins reserves the right to the following actions towards members who fail to comply:
 • change nicknames of members
 • remove rights, privileges, and roles of members
 • discipline members (ban/kick/mute)
 
-If you have any questions or would like some clarification to these rules, please contact any @⭐ E-Board member of Programming Club.**
+If you have any questions or would like some clarification to these rules, please contact any @⭐ E-Board member of Programming Club.
