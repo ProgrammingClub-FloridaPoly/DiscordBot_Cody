@@ -1,0 +1,19 @@
+**PROGRAMMING KNOWLEDGE**
+Users with any of the Hackcon roles are attending or speaking at MLH Hackcon VIII hosted by GitHub. 
+Users with any knowledge of the following:
+
+@Python
+@C
+@C++
+@C#
+@Java
+@Javascript
+@HTML
+@CSS
+@React
+@Node.js
+@Native
+@Bootstrap
+@Firebase
+@Azure
+@AWS

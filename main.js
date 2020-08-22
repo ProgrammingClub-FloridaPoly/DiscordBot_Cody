@@ -71,9 +71,6 @@ client.on('message', message=>{
         console.error(error);
         message.channel.send('```> Error: No response. Please try again.```');
     }
-
-    //EMBED
-
 });
 
 //Keep in last line of file
