@@ -15,6 +15,7 @@ module.exports = {
         var x = (args.length == 0 || parseInt(args[0]) == 0) ? 1 : parseInt(args[0]);
         console.log(`Deleting ${x} messages...`);
 
+        //NOTE: May not delete if messages are less than requested.
         if (x > 99) return message.channel.send('```> You cannot delete more than 99 messages at a time!```');
         message.channel.bulkDelete(x + 1).then(() => {
             message.channel.send('```> CLEAR!```').then(message => message.delete({timeout: 3000}));

@@ -3,14 +3,13 @@
 The Programming Club server is intended to be for anyone with an invitation. From time to time, we will have guests from all over to help the server to share knowledge of programming. Before you can continue, change your nickname to the following format: firstName + lastName (ex- John Smith). Please review everything else in order to proceed.
 
 **MEMBER**
-To gain *basic* access to our server, we ask that you read & accept the terms in #🧾│rules.
+To gain *basic* access to our server, we ask that you read & accept the terms in <#748273862416007298>.
 
-If you are ready to become a @👍 Member of the Programming_Club server, react to this message with :thumbsup:.
+If you are ready to become a <@&739626738736168982> of the Programming_Club server, react to this message with :thumbsup:.
 
 **FLORIDA POLY STUDENT**
-To gain *full* access to our server, we ask that you read & accept the terms in #🧾│rules. In addition, we remind you to follow the university's Student Code of Conduct: <https://floridapoly.edu/student-affairs/student-development/student-handbook-code-of-conduct.php>
+To gain *full* access to our server, we ask that you read & accept the terms in <#748273862416007298>. In addition, we remind you to follow the university's Student Code of Conduct: <https://floridapoly.edu/student-affairs/student-development/student-handbook-code-of-conduct.php>
 
-To begin the student verification process to receive the @🔥 Florida Poly Student role, react to this message with :PhoenixPride2:.
-
+To begin the student verification process to receive the <@&729844206452998185>, react to this message with <:PhoenixPride:729734288328884255>. (You must react to both to begin process.)
 
 ***By reacting to this channel, you are accepting the Programming Club's server rules, including all further changes. These changes might be done at any time without notice, it is your responsibility to check for them.***

@@ -14,6 +14,7 @@ const config = {
 
 //command files using other .js files
 const fs = require('fs');
+const { type } = require('os');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
@@ -36,6 +37,7 @@ client.once('ready', () => {
 //makes bot listen to messages and commands
 client.on('message', message=>{
 
+
     //checks if message has codeblock format
     if(!message.content.startsWith(config.codeblock) || message.author.bot) return;
 
@@ -51,16 +53,18 @@ client.on('message', message=>{
 
     const args = existing.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    
-    var x = 0;
+    //var x = 0;
+    console.log('3) args = ' + args + ':::' + args.length + ':::' + (typeof args));
     for (arg in args){
-        console.log('3.' + x + ') args = :::' + args[x] + ':::');
-        x++;
+        console.log('\t\t3[' + arg + ']) args = :::' + args[arg] + ':::' + (args[arg].length) + ':::' + (typeof args[arg]));
+        //x++;
     }
-    console.log('3) args = ' + args);
+    
     console.log('4) command = ' + command);
     console.log('-------------------------------------');
-    
+    console.log('message id:) ' + message);
+    console.log('channel.name:) ' + message.channel.name);
+    console.log('-------------------------------------');
 
     //Dynamically analyze commands
     if (!client.commands.has(command)) return message.channel.send('```> Error: Command does not exist.```');

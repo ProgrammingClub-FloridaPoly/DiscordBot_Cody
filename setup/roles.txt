@@ -1,23 +1,23 @@
 **COMMUNITY ROLES**
 All the roles below are used to distinguish the various people on our server and in our community!
 
-@⭐ E-Board  - These hard-working folks are the executive board of Programming Club at Florida Poly.
-@🎬 Team Director - Directors lead their respective Teams of Programming Club to greatness! 
-@{team_name} - Teams that specializes in different areas of Programming Club. They work on various projects within their team. Student-verified members can go to #📺│channels to join a Team!
+<@&729528696695947316> - These hard-working folks are the executive board of Programming Club at Florida Poly.
+<@&729713333699346463> - Directors lead their respective Teams of Programming Club to greatness! 
+@{team_name} - Teams that specializes in different areas of Programming Club. They work on various projects within their team. Only <@&729844206452998185> members can join any of our Teams!
 @{coordinator_name} - Coordinators work with Team Directors and E-board to help Programming Club's goals.
-@🧙‍♂️ Advisor - Club Advisor and past E-board members who guide the current E-Board to the road not taken. 
-@🔥 Florida Poly Student - This coveted role is reserved only for Florida Poly students. Registration and verification is required. These get full access to our server. You can claim this role in #✅│registration.
-@👍 Member - This role is given to anyone who agrees to abide by our rules in the #🧾│rules channel. This role grants limited access to this server.
+<@&736726170338590751> - Club Advisor and past E-board members who guide the current E-Board to the road not taken. 
+<@&729844206452998185> - This coveted role is reserved only for Florida Poly students. Registration and verification is required in order for full access to our server. You can claim this role in <#733864125868015646>.
+<@&739626738736168982> - This role is given to anyone who agrees to abide by our rules in the <#748273862416007298>. This role grants limited access to this server.
 
 
 **PARTICIPATION ROLES**
 You must meet certain criteria to receive these roles. This list is constantly growing!
 
-@🥇PhoenixHacks - This role is for students who participated PhoenixHacks.
+<@&746861233466245230> - This role is for students who participated PhoenixHacks.
 @🥇{hackathon_name} - We create this role for those who venture out to other hackathons.
 @🥇{competition_name} - This role is for those who participated in certain programming competitions.
-@🥇MVP - This monthly role is awarded to our Most Valuable Programmer who goes above and beyond at Programming Club.
-@🥇PhoenixPride - Members who attend 3 or more Florida Poly events. 
-@🥇SocialLite - Members who attend 3 or more social gatherings outside of school.
-@🥇Keynote - Members who lead a workshop/presentation at least once.
-@🥇ALLSTAR - Members who received all Participation Roles above.
+<@&746863390542004274> - This monthly role is awarded to our Most Valuable Programmer who goes above and beyond at Programming Club.
+<@&746864528612130858> - Members who attend 3 or more Florida Poly events. 
+<@&746864887723982970> - Members who attend 3 or more social gatherings outside of school.
+<@&746865069979074691> - Members who lead a workshop/presentation at least once.
+<@&746865352872427713> - Members who received all Participation Roles above.
