@@ -201,4 +201,42 @@
         // let role = reaction.message.guild.roles.cache.find(role => role.name.toLowerCase() === emojiName.toLowerCase());
         // console.log('2A) ' + role + '=>' + role.name + '===' + emojiName)
 
-        
+// //NOTE: NEED TO FIND WAY TO GET PHOENIXPRIDE EMOJI (NAME AND ID)
+// let newEmoji = client.emojis.cache.find(emoji => emoji.name === "PhoenixPride") 
+// //newReaction.emoji.name.replace(phoenixRole.name);
+// newReaction.emoji.name = newEmoji.name;
+// // newReaction.emoji.setName(phoenixRole.name);
+// // newReaction.emoji.setName(phoenixRole.id)
+// newReaction.emoji.id = newEmoji.id;
+// //newReaction.emoji.id.replace(phoenixRole.id);
+
+                        // let newReaction = reaction;
+
+                        // newReaction.emoji.name.replace(phoenixRole.name);
+                        // // newReaction.emoji.id = phoenixRole.id;
+                        // newReaction.emoji.id.replace(phoenixRole.id);
+
+                        // setTimeout(function(){
+                        //     client.emit('messageReactionAdd', newReaction, user)
+                        //     console.log('EMITTED messageReactionAdd: attempted')
+                        // }, 2000)
+
+                        // //remove the Phoenix reaction
+                        // let msg = await reaction.message.fetch();
+                        // const userReactions = await msg.reactions.cache.filter(reaction => reaction.users.cache.has(member.id));
+                        // console.log(userReactions.size)
+                        // for (const react of userReactions.values()) {
+                        //     await react.users.remove(member.id);
+                        // }
+                        
+                        // //remove the Phoenix role
+                        // await member.roles.remove(phoenixRole.id)
+                        // .catch(() => console.error('REMOVE STUDENT role failed.'));
+                        // console.log('REMOVE BOTH roles success.')
+                        // // setTimeout(function(){
+                        // //     client.emit()
+                        // // })
+
+                        // //remove the Member role
+                        // await member.roles.remove(memberRole.id)
+                        // .catch(() => console.error('REMOVE MEMBER role failed.'));

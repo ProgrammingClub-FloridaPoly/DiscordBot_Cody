@@ -2,15 +2,23 @@ const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION']});
 require('dotenv-flow').config();
 
+var x = 1;
+
 const config = {
     //you must create .env file (like .env_sample) and create values
-    token: process.env.TOKEN,
+
+    //DEVELOPMENT MODE:
+    //WORKING IN DEV BRANCH. REPLACE DEV VALUES AND MERGE TO MASTER
+
+    //token: process.env.TOKEN,
+    token: process.env.DEV,
     owner: process.env.OWNER,
     prefix: process.env.PREFIX,
     codeblock: process.env.CODEBLOCK,
     generalChat: process.env.GENERALCHAT,
     testingChat: process.env.TESTINGCHAT,
-    registration: process.env.REGISTRATION,
+    //registration: process.env.REGISTRATION,
+    registration: process.env.DEVREGISTRATION,
 };
 
 //command files using other .js files
@@ -27,10 +35,10 @@ for(const file of commandFiles){
 //listens to see if bot is online (in CMD, type: node .)
 client.once('ready', () => {
     console.log('_________________________________________________________________');
-    console.log('Cody is online!');
+    console.log('Cody (DEV) is online!');
 
     var userID = config.owner;
-    var hello = 'TESTING MODE: on Computer!\n💙💙💙';
+    var hello = 'DEVELOPMENT MODE: on Computer!\n💜💜💜💜💜💜💜💜';
     client.users.cache.get(userID).send(hello);
 
 });
@@ -80,61 +88,62 @@ client.on('message', message=>{
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
-    console.log('===================================');
-    // console.log(reaction);
-    console.log('===================================');
-
+    console.log('+++++++++++++++++++++++++');
+    console.log('            ' + x);
     console.log('+++++++++++++++++++++++++');
     console.log('\nReactionADD Started');
 
     let applyRegistration = async () => {
+        //console.log(reaction)
+
         let emojiName = reaction.emoji.name;
-        //console.log('1) ' + emojiName)
-
+        console.log('1) ' + emojiName)
         let memberRole = reaction.message.guild.roles.cache.find(role => role.name === '👍 Member');
-        //console.log('2B) ' + memberRole + '=>' + memberRole.name + ' ' + memberRole.id)
-        
+        console.log('2B) ' + memberRole + '=>' + memberRole.name + ' ' + memberRole.id)
         let phoenixRole = reaction.message.guild.roles.cache.find(role => role.name === '🔥 Florida Poly Student');
-        //console.log('2C) ' + phoenixRole + '=>' + phoenixRole.name + ' ' + phoenixRole.id)
-
+        console.log('2C) ' + phoenixRole + '=>' + phoenixRole.name + ' ' + phoenixRole.id)
         let member = reaction.message.guild.members.cache.find(member => member.id === user.id);
         console.log('3) ' + member + '=>' + member.id + '===' + user.id)
-        
+        let userPHOENIX1 = member.roles.cache.some(role => role.id === phoenixRole.id)
+        let userMEMBER1 = member.roles.cache.some(role => role.id === memberRole.id)
+
         try {           
              
-            if(emojiName === '👍') {
+            //if user added 👍 AND is not a MEMBER
+            if((emojiName === '👍') && (!userMEMBER1)) {
+                //give MEMBER role
                 await member.roles.add(memberRole.id)
                 .catch(() => console.error('ADD MEMBER role failed.'));
                 console.log('ADD MEMBER role success.')
             }
-
-            if(emojiName === 'PhoenixPride') {
-                //if user is a member already
-                if (member.roles.cache.some(role => role.id === '739626738736168982')){
+            else if ((emojiName === '👍') && (userMEMBER1)){
+                console.log('❌')
+                return;
+            }
+            //if user added Phoenix AND is a MEMBER
+            else if((emojiName === 'PhoenixPride') && (userMEMBER1)) {
+                //if user is a MEMBER already
+                //if (member.roles.cache.some(role => role.id === memberRole.id)){
+                    
                     //send user DM to request verification ()
                     client.users.cache.get(member.id).send('We will begin the verification process of Florida Poly Students.');
                     
-                    
-
-
                     //STEPS FOR VEIFICATION
                     //have user verifiy name, ID, email with command
                     //set nickname
                     //remove permissions to change nickname
 
-                    //if email contains correct info, give user PhoenixRole
-                    console.log('USER CAN HAVE FLPOLY STUDENT ROLE')
-
                     //// TEMPORARY UNTIL VERIFICATION SECTION IS COMPLETE
-                    // await member.roles.add(phoenixRole.id)
-                    // .catch(() => console.error('TEMP role failed.'));
-                    // console.log('TEMP role success.')
-
-                }else{
+                    await member.roles.add(phoenixRole.id)
+                    .catch(() => console.error('TEMP role failed.'));
+                    console.log('TEMP role success.')
+                //}
+            }
+            else if ((emojiName === 'PhoenixPride') && (!userMEMBER1)){
+                    //if user is NOT a MEMBER, emoji reaction is removed.
                     try {
                         let msg = await reaction.message.fetch();
                         const userReactions = await msg.reactions.cache.filter(reaction => reaction.users.cache.has(member.id));
-                        console.log(userReactions.size)
                         for (const react of userReactions.values()) {
                             await react.users.remove(member.id);
                         }
@@ -143,21 +152,30 @@ client.on('messageReactionAdd', async (reaction, user) => {
                         console.error('Failed to remove reactions.');
                     }
                 }
-                
-            }
         }
         catch(err) {
             console.log('FLPOLY STUDENT ROLE ERROR:\n' + err);
         }
+
+        // setTimeout(function(){
+        let userPHOENIX2 = await member.roles.cache.some(role => role.id === phoenixRole.id)
+        let userMEMBER2 = await member.roles.cache.some(role => role.id === memberRole.id)
+        
+        console.log ('\n'+ x + ')REACTION ADD: \n' 
+        + '\t\tCLICK\t\tRESULT\n'
+        + 'PHOENIX:\t'+ userPHOENIX1 + '\t==>\t' + userPHOENIX2 + '\n'
+        + 'MEMBER:\t\t'+ userMEMBER1 + '\t==>\t' + userMEMBER2)
+        // }, 2000)
     }
+
     if(reaction.message.partial)
     {
         try {
             let msg = await reaction.message.fetch(); 
-            console.log(msg.id);
+            //console.log(msg.id);
             if(msg.id === config.registration)
             {
-                console.log("Cached")
+                console.log("Message is a partial, but is Now Cached")
                 applyRegistration();
             }
         }
@@ -167,55 +185,123 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
     else 
     {
-        console.log("Not a partial.");
+        console.log("Not a partial. Already Cached.");
         if(reaction.message.id === config.registration) {
             console.log(true);
             applyRegistration();
         }
     }
+    console.log('+++++++++++++++++++++++++');
+    console.log('            ' + x);
+    console.log('+++++++++++++++++++++++++');
+    x++;
 });
 
 client.on('messageReactionRemove', async (reaction, user) => {
-    console.log('===================================');
-
-    // console.log(reaction);
-    console.log('===================================');
-
+    console.log('-------------------------');
+    console.log('            ' + x);
     console.log('-------------------------');
     console.log('\nReactionREMOVE Started');
 
     let removeRegistration = async () => {
+        //console.log(reaction)
+
         let emojiName = reaction.emoji.name;
+        console.log('1) ' + emojiName)
         let memberRole = reaction.message.guild.roles.cache.find(role => role.name === '👍 Member');
+        console.log('2B) ' + memberRole + '=>' + memberRole.name + ' ' + memberRole.id)
         let phoenixRole = reaction.message.guild.roles.cache.find(role => role.name === '🔥 Florida Poly Student');
+        console.log('2C) ' + phoenixRole + '=>' + phoenixRole.name + ' ' + phoenixRole.id)
         let member = reaction.message.guild.members.cache.find(member => member.id === user.id);
+        console.log('3) ' + member + '=>' + member.id + '===' + user.id)
+        let userPHOENIX1 = member.roles.cache.some(role => role.id === phoenixRole.id)
+        let userMEMBER1 = member.roles.cache.some(role => role.id === memberRole.id)
 
         try {
-            if(emojiName === '👍') {
-                //once user agrees, user cannot un-react.
-                //client.emit('messageReactionAdd', reaction, user);
+            //deselected reaction and is MEMBER
+            if((emojiName === '👍') && (userMEMBER1)) {
+                //check if MEMBER is also PHOENIX
+                //if (member.roles.cache.some(role => role.id === phoenixRole.id)){
+                if (userPHOENIX1){
+                
+                    try {
+                        //remove PHOENIX role
+                        await member.roles.remove(phoenixRole.id)
+                        .then(setTimeout(function(){
+                            
+                            //create new reaction to EMIT for emoji removal
+                            let newReaction = reaction;
+                            let newEmoji = client.emojis.cache.find(emoji => emoji.name === "PhoenixPride") 
+                            newReaction.emoji.name = newEmoji.name;
+                            newReaction.emoji.id = newEmoji.id;
+                            console.log('EMITTED messageReactionAdd: attempting')
+                            client.emit('messageReactionAdd', newReaction, user)
+                            console.log('EMITTED messageReactionAdd: finished')
+                        }, 1000))
+                        .catch(() => console.error('REMOVE STUDENT role failed.'));                        
+                    } catch (error) {
+                        console.error('Failed role removal - THUMBSUP.');
+                    }
+                }
 
-                //for now they can remove the role
-                await member.roles.remove(memberRole.id)
-                .catch(() => console.error('REMOVE MEMBER role failed.'));
-                console.log('REMOVE MEMBER role success.')
+                //remove MEMBER role
+                try {
+                    await member.roles.remove(memberRole.id)
+                    .catch(() => console.error('REMOVE STUDENT role failed.'));
+                    console.log('REMOVE STUDENT role success.')
+                } catch (error) {
+                    console.error('Failed role removal - PHOENIXPRIDE.');
+                }
+
+
+
+                // else{
+                //     //for now they can remove the role
+                //     await member.roles.remove(memberRole.id)
+                //     .catch(() => console.error('REMOVE MEMBER role failed.'));
+                //     console.log('REMOVE MEMBER only role success.')
+                // }
             }
 
-            if(emojiName === 'PhoenixPride') {
-                //Members should no longer have access to this channel anyway
-                //This should just simply remove the role if they are not Members first
-                //client.emit('messageReactionAdd', message, user);
-
-                //for now they can remove the role
-                await member.roles.remove(phoenixRole.id)
-                .catch(() => console.error('REMOVE FLPOLY STUDENT role failed.'));
-                console.log('REMOVE FLPOLY STUDENT role success.')
+            else if((emojiName === 'PhoenixPride') && (userPHOENIX1)) {
+                //if (member.roles.cache.some(role => role.id === phoenixRole.id)){
+                    try {
+                        await member.roles.remove(phoenixRole.id)
+                        .catch(() => console.error('REMOVE STUDENT role failed.'));
+                        console.log('REMOVE STUDENT role success.')
+                    } catch (error) {
+                        console.error('Failed role removal - PHOENIXPRIDE.');
+                    }
+                // }else{
+                //     // //if they do not have the member role...
+                //     // try {
+                //     //     let msg = await reaction.message.fetch();
+                //     //     const userReactions = await msg.reactions.cache.filter(reaction => reaction.users.cache.has(member.id));
+                //     //     console.log(userReactions.size)
+                //     //     for (const react of userReactions.values()) {
+                //     //         await react.users.remove(member.id);
+                //     //     }
+                //     //     console.log('You must be a @👍 Member first!!!')
+                //     // } catch (error) {
+                //     //     console.error('Failed to remove reactions.');
+                //     // }
+                // }
             }
         }
         catch(err) {
             console.log('removeRegistration() - THERE IS AN ERROR:' + err);
         }
+        //setTimeout(function(){
+            let userPHOENIX2 = member.roles.cache.some(role => role.id === phoenixRole.id)
+            let userMEMBER2 = member.roles.cache.some(role => role.id === memberRole.id)
+            
+            console.log ('\n'+ x + ')REACTION REMOVE: \n' 
+            + '\t\tCLICK\t\tRESULT\n'
+            + 'PHOENIX:\t'+ userPHOENIX1 + '\t==>\t' + userPHOENIX2 + '\n'
+            + 'MEMBER:\t\t'+ userMEMBER1 + '\t==>\t' + userMEMBER2)
+        //    }, 1000)
     }
+
     if(reaction.message.partial)
     {
         try {
@@ -223,7 +309,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
             console.log(msg.id);
             if(msg.id === config.registration)
             {
-                console.log("Cached")
+                console.log("Message is a partial, but is Now Cached")
                 removeRegistration();
             }
         }
@@ -233,12 +319,16 @@ client.on('messageReactionRemove', async (reaction, user) => {
     }
     else 
     {
-        console.log("Not a partial.");
+        console.log("Not a partial. Already Cached.");
         if(reaction.message.id === config.registration) {
             console.log(true);
             removeRegistration();
         }
     }
+    console.log('-------------------------');
+    console.log('            ' + x);
+    console.log('-------------------------')
+    x++
 })
 
 //Keep in last line of file
