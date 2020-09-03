@@ -240,3 +240,15 @@
                         // //remove the Member role
                         // await member.roles.remove(memberRole.id)
                         // .catch(() => console.error('REMOVE MEMBER role failed.'));
+//Emitting to this path results in permanent change in first emoji name and id.
+                    //Let's try to change back the name, 
+                    // if (userPHOENIX1){
+                    //     let newEmoji = client.emojis.cache.find(emoji => emoji.name === "PhoenixPride") 
+                    //     reaction.emoji.name = newEmoji.name;
+                    //     reaction.emoji.id = newEmoji.id;
+                        
+                    //     //if user is NOT a MEMBER, emoji reaction is removed.
+                    //     await member.roles.remove(phoenixRole.id)
+                    //     .catch(() => console.error('TEMP role failed.'));
+                    //     //console.log('TEMP role success.')
+                    // }
