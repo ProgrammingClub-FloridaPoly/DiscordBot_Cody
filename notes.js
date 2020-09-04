@@ -252,3 +252,26 @@
                     //     .catch(() => console.error('TEMP role failed.'));
                     //     //console.log('TEMP role success.')
                     // }
+
+                //     console.log('\nCLICK:\t' + emojiName + '\t' + userMEMBER1 + '\t' + userPHOENIX1 + '\n')
+
+                //     const roles = member.roles.cache
+                //                     .sort((a, b) => b.position - a.position)
+                //         .map(role => role.name.toString())
+                        
+                //     console.log(`**❯ Roles [${roles.length}]:** ${roles.length < 10 ? roles.join(', ') : roles.length > 10 ? this.client.utils.trimArray(roles) : 'None'}\n`)
+            
+
+
+//RAW PACKETS
+
+// client.on('raw', packet => {
+    
+//     // We don't want this to run on unrelated packets
+//     if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE', 'MESSAGE_CREATE'].includes(packet.t)) return;
+
+//     console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+//     console.log(packet)
+//     console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+
+// });
