@@ -8,16 +8,13 @@ const config = {
     //DEVELOPMENT MODE:
     //WORKING IN DEV BRANCH. REPLACE DEV VALUES AND MERGE TO MASTER
 
-    //token: process.env.TOKEN,
-    token: process.env.DEV,
+    token: process.env.TOKEN,
     owner: process.env.OWNER,
     prefix: process.env.PREFIX,
     codeblock: process.env.CODEBLOCK,
     generalChat: process.env.GENERALCHAT,
     testingChat: process.env.TESTINGCHAT,
-    //registration: process.env.REGISTRATION,
-    registration: process.env.DEVREGISTRATION,
-    //verification: process.env.VERIFICATION,
+    registration: process.env.REGISTRATION,
     verification: process.env.VERIFICATION,
 };
 
@@ -38,8 +35,9 @@ client.once('ready', () => {
     console.log('Cody (DEV) is online!');
 
     var userID = config.owner;
-    var hello = 'DEVELOPMENT MODE: on Computer!\n💜💜💜💜💜💜💜💜';
+    var hello = 'DEVELOPMENT MODE: on Computer!\n💙💙💙💙💙💙💙💙';
     client.users.cache.get(userID).send(hello);
+    client.user.email
 
 });
 
