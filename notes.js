@@ -275,3 +275,7 @@
 //     console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
 
 // });
+
+//member.send('Welcome, DEV!\n\nMy name is Cody. I am Programming Club\'s smart bot assistant. Let\'s begin the verification process for obtaining the `@ Florida Poly student` role. This role allows you to get full access of this server.\n\nYou will need to access the Cody Terminal in order to proceed.The Cody Terminal is accessed by typing in special commands in codeblocks.\n\n***Please enter the following commands, replacing with your information:***\n\`\`\`>_cody verify <University Email> <First Name> <Last Name> <Last 4 of Student ID>\`\`\`')
+
+//
