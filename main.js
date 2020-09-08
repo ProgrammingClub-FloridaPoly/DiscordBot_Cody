@@ -45,7 +45,6 @@ client.once('ready', () => {
 //makes bot listen to messages and commands
 client.on('message', message=>{
 
-
     //checks if message has codeblock format
     if(!message.content.startsWith(config.codeblock) || message.author.bot) return;
 
@@ -61,11 +60,9 @@ client.on('message', message=>{
 
     const args = existing.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    //var x = 0;
     console.log('3) args = ' + args + ':::' + args.length + ':::' + (typeof args));
     for (arg in args){
         console.log('\t\t3[' + arg + ']) args = :::' + args[arg] + ':::' + (args[arg].length) + ':::' + (typeof args[arg]));
-        //x++;
     }
     
     console.log('4) command = ' + command);
@@ -78,7 +75,7 @@ client.on('message', message=>{
     if (!client.commands.has(command)) return message.channel.send('```> Error: Command does not exist.```');
 
     try {
-        client.commands.get(command).execute(message, args);
+        client.commands.get(command).execute(message, args, client);
     }catch (error) {
         console.error(error);
         message.channel.send('```> Error: No response. Please try again.```');
@@ -86,11 +83,6 @@ client.on('message', message=>{
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
-    console.log('+++++++++++++++++++++++++');
-    console.log('            ' + x);
-    console.log('+++++++++++++++++++++++++');
-    console.log('\nReactionADD Started');
-
     let applyRegistration = async () => {
 
         let emojiName = reaction.emoji.name;
@@ -109,21 +101,26 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 //give MEMBER role
                 await member.roles.add(memberRole.id)
                 .catch(() => console.error('ADD MEMBER role failed.'));
-                console.log('SELECTED PATH A: MEMBER role success.')
             }
 
             //if user added Phoenix AND is a MEMBER
             else if((emojiName === 'PhoenixPride') && (userMEMBER && !userPHOENIX)) {
                 console.info('SELECTED PATH B: A|2 T F')
-                //if user is a MEMBER already
                 
-                //send user DM to request verification ()
-                client.users.cache.get(member.id).send('We will begin the verification process of Florida Poly Students.');
+                // //send user DM to request verification ()
+                // member.send('Welcome, DEV!\n\nMy name is Cody. I am Programming Club\'s smart bot assistant. Let\'s begin the verification process for obtaining the `@ Florida Poly student` role. This role allows you to get full access of this server.\n\nYou will need to access the Cody Terminal in order to proceed.The Cody Terminal is accessed by typing in special commands in codeblocks.\n\n***Please enter the following commands, replacing with your information:***\n\`\`\`>_cody verify <University Email> <First Name> <Last Name> <Last 4 of Student ID>\`\`\`')             
                 
                 //// TEMPORARY UNTIL VERIFICATION SECTION IS COMPLETE////
+                member.send('Welcome, DEV!\n\nMy name is Cody. I am Programming Club\'s smart bot assistant.\n You have been TEMPORARILY been given the `@ Florida Poly student` role. This role allows you to get full access of this server.\n\nA member of `@eboard` will verify that you are a Florida Poly Student.\n\n')   
+
+                let verifyChannel = client.channels.cache.find(channel => channel.id === config.verification)
+                console.log(typeof verifyChannel)
+                console.log(verifyChannel)
+                
+                client.channels.cache.get(config.verification).send(`<@${member.id}> has been granted <@&${phoenixRole.id}>. Please manually verify that this user is a Florida Poly Student.`);
+
                 await member.roles.add(phoenixRole.id)
                 .catch(() => console.error('TEMP role failed.'));
-                console.log('SELECTED PATH B: TEMP role success.')
             }
             else {
                 console.info('SELECTED PATH C: A|2 F F')
@@ -148,7 +145,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 //remove MEMBER role
                 await member.roles.remove(memberRole.id)
                 .catch(() => console.error('MEMBER role does not exist for User.'));
-                console.info('SELECTED PATH C: ALL roles and reactions success')
             }
         }
         catch(err) {
@@ -216,6 +212,8 @@ client.on('messageReactionRemove', async (reaction, user) => {
             }
             else {
                 console.info('SELECTED PATH D: R|1 T T')
+
+                //removes Phoenix role
                 await member.roles.remove(phoenixRole.id)
                 .catch(() => console.error('PHOENIX role does not exist for User.'));
 
@@ -236,7 +234,13 @@ client.on('messageReactionRemove', async (reaction, user) => {
                 await member.roles.remove(memberRole.id)
                 .catch(() => console.error('MEMBER role does not exist for User.'));
 
-                console.info('SELECTED PATH D: ALL roles and reactions success')
+                //remove all remaining roles (if users have higher positions)
+                const roleList = member.roles.cache
+                .sort((a, b) => b.position - a.position)
+                .map(role => role.id.toString())
+
+                await member.roles.remove(roleList)
+                .catch(() => console.error('ALL roles were NOT REMOVED'));
             }
             
         }
@@ -249,7 +253,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
     {
         try {
             let msg = await reaction.message.fetch(); 
-            console.log(msg.id);
+            //console.log(msg.id);
             if(msg.id === config.registration)
             {
                 console.log("Message is a partial, but is Now Cached")
@@ -268,7 +272,6 @@ client.on('messageReactionRemove', async (reaction, user) => {
             removeRegistration();
         }
     }
-
 })
 
 //Keep in last line of file
