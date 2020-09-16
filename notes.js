@@ -279,3 +279,70 @@
 //member.send('Welcome, DEV!\n\nMy name is Cody. I am Programming Club\'s smart bot assistant. Let\'s begin the verification process for obtaining the `@ Florida Poly student` role. This role allows you to get full access of this server.\n\nYou will need to access the Cody Terminal in order to proceed.The Cody Terminal is accessed by typing in special commands in codeblocks.\n\n***Please enter the following commands, replacing with your information:***\n\`\`\`>_cody verify <University Email> <First Name> <Last Name> <Last 4 of Student ID>\`\`\`')
 
 //
+/*
+Application (client) ID → The id of your application
+1ebb42d7-f577-4f08-8e82-0dfc59937819
+
+Directory (tenant) ID → The Azure AD tenant id
+8d84067d-9ad7-4572-9b10-133d36462aaa
+
+Endpoint
+https://login.microsoftonline.com/common/oauth2/v2.0/token
+
+Client Secret
+wfuVADU910+zktnURC43%}~
+
+
+
+*/
+
+
+    // //PASS
+    // //checks arg[0] - email : Checks if regex is in email string
+    // let emailREGEX = /^[a-zA-Z]+\d\d\d\d@floridapoly.edu/g
+    // if((email.length >= 22) && (emailREGEX.test(email))){
+    //     emailPASS = true
+    // }else{
+    //     console.log('1: Must have Florida Poly Student Email. Reenter Verification command')
+    // }
+    
+    // //PASS
+    // //checks arg[1] - first name : checks if first letter of fname and email are the same
+    // if((fName.length >= 2) && (fName.charAt(0) === email.charAt(0))){
+    //     fNamePASS = true
+    // }else{
+    //     console.log('2: Check email and/or first name again. Then re-enter Verification command')
+    // }
+
+    // //checks arg[2] - last name : checks if last name is in email
+    // if((lName.length >= 2) && (email.includes(lName))){
+    //     lNamePASS = true
+    // }else{
+    //     console.log('3: Check last name again. Then re-enter Verification command')
+    // }
+
+    // //checks arg[3]
+    // if ((studentID.length == 4) && (email.includes(studentID))){
+    //     studentIdPASS = true
+    // }else{
+    //     console.log('4: Check Student ID again. Then re-enter Verification command')
+    // }
+
+    // //check for everything in place
+    // let emailCheck = fName.charAt(0) + lName + studentID + '@floridapoly.edu'
+    // if ((emailCheck === email)){
+    //     console.log(emailCheck === email)
+    //     console.log('ALL TRUE')
+    // }
+    
+
+
+    // // if (emailPASS && fNamePASS && lNamePASS && idPASS){
+    // // }
+
+    // console.log('email:' + emailPASS)
+    // console.log('firstName:' + fNamePASS)
+    // console.log('lastName:' + lNamePASS)
+    // console.log('id:' + studentIdPASS)
+
+//

@@ -4,7 +4,7 @@ module.exports = {
     aliases: ["rm"],
     description: "deletes up to 99 messages",
     execute(message, args){
-        console.log(message)
+        //console.log(message)
 
         //MUST VERIFY PERMISSIONS TO PROCEED
         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('```> You cannot clear messages```');

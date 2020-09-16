@@ -9,7 +9,7 @@
   "author": "Jose Placeres",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.3.1",
     "dotenv-flow": "^3.2.0"
   }
 }
