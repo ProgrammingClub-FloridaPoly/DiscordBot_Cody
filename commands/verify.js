@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 const config = {
     //verification: process.env.VERIFICATION,
-    verification: process.env.DEVVERIFICATION,
+    verification: process.env.VERIFICATION,
     server: process.env.SERVERNAME,
 };
 
