@@ -83,6 +83,75 @@ client.on('message', message=>{
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
+
+    let studentRegistration = async() => {
+        console.log('STUDENT REGISTRATION STARTS HERE!!')
+
+        let emojiName = reaction.emoji.name;
+        let phoenixRole = reaction.message.guild.roles.cache.find(role => role.name === '🔥 Florida Poly Student');
+        let member = reaction.message.guild.members.cache.find(member => member.id === user.id);
+
+        try {                       
+            if(emojiName === '✅') {
+
+                //notify user DM
+                member.send(`🎊Congrats, ${member.name}!🎉\n\nYou have been granted the \`@ Florida Poly student\` role which allows you to get full access of this server.\n\nEnjoy!`)   
+                
+                //client.channels.cache.get(config.verification).send(`<@${member.id}> has been granted <@&${phoenixRole.id}>. Please manually verify that this user is a Florida Poly Student.`);
+
+                //change color of verification message
+                const exampleEmbed = new Discord.MessageEmbed()
+                .setColor('#26D30E')
+
+                console.log('----------------')
+                console.log(reaction.message)
+                console.log('----------------')
+
+                ////give role to member
+                // await member.roles.add(phoenixRole.id)
+                // .catch(() => console.error('ADD PHOENIX role failed.'));
+
+            }
+            else if(emojiName === '❌') {
+                //send user DM
+                member.send('Oh no!\n\nIt looks like your request has been denied. If you feel like this is an error, please reach out to any member of eboard to help you resolve this issue.\n\n Have a nice day!')    
+                
+                //change verification color to red
+
+                //deselect phoenix emoji in registration channel
+
+
+            }
+            else {
+                console.info('SELECTED PATH C: A|2 F F')
+                    
+                //remove PHOENIX role
+                await member.roles.remove(phoenixRole.id)
+                .catch(() => console.error('PHOENIX role does not exist for User.'));
+
+                try {
+                    let msg = await reaction.message.fetch();
+                    const userReactions = await msg.reactions.cache.filter(reaction => reaction.users.cache.has(member.id));
+                        
+                    //it removes all reactions that was reacted (can be many selected)
+                    for (const react of userReactions.values()) {
+                        await react.users.remove(member.id);
+                        console.info('ALL Reactions Removed')
+                    }
+                } catch (error) {
+                    console.error('Failed to remove reactions.');
+                }
+
+                //remove MEMBER role
+                await member.roles.remove(memberRole.id)
+                .catch(() => console.error('MEMBER role does not exist for User.'));
+            }
+        }
+        catch(err) {
+            console.log('FLPOLY STUDENT ROLE ERROR:\n' + err);
+        }
+    }
+
     let applyRegistration = async () => {
 
         let emojiName = reaction.emoji.name;
@@ -107,20 +176,10 @@ client.on('messageReactionAdd', async (reaction, user) => {
             else if((emojiName === 'PhoenixPride') && (userMEMBER && !userPHOENIX)) {
                 console.info('SELECTED PATH B: A|2 T F')
                 
-                // //send user DM to request verification ()
-                // member.send('Welcome, DEV!\n\nMy name is Cody. I am Programming Club\'s smart bot assistant. Let\'s begin the verification process for obtaining the `@ Florida Poly student` role. This role allows you to get full access of this server.\n\nYou will need to access the Cody Terminal in order to proceed.The Cody Terminal is accessed by typing in special commands in codeblocks.\n\n***Please enter the following commands, replacing with your information:***\n\`\`\`>_cody verify <University Email> <First Name> <Last Name> <Last 4 of Student ID>\`\`\`')             
+                //send user DM to request verification ()
+                member.send('Welcome, DEV!\n\nMy name is **Cody**. I am Programming Club\'s smart bot assistant.\n\nLet\'s begin the verification process for obtaining the `@ Florida Poly student` role. This role allows you to get full access to this server. You will need to access the Cody Terminal in order to proceed. The Cody Terminal is accessed by typing in special commands in codeblocks. Codeblocks can be activated by typing three backquote symbols (**\\`\\`\\`**) before and after. The backquote symbol is located below the **ESC** key.\n\nAll commands must be typed like this example:\t***\\`\\`\\`>_cody <command>\\`\\`\\`***\n\n***Please enter the following commands, replacing with your information:***\n\`\`\`>_cody verify <Florida_Poly_student_email> <first_name> <last_name> <last_4_of_studentID>\`\`\`')             
                 
-                //// TEMPORARY UNTIL VERIFICATION SECTION IS COMPLETE////
-                member.send('Welcome, DEV!\n\nMy name is Cody. I am Programming Club\'s smart bot assistant.\n You have been TEMPORARILY been given the `@ Florida Poly student` role. This role allows you to get full access of this server.\n\nA member of `@eboard` will verify that you are a Florida Poly Student.\n\n')   
 
-                let verifyChannel = client.channels.cache.find(channel => channel.id === config.verification)
-                console.log(typeof verifyChannel)
-                console.log(verifyChannel)
-                
-                client.channels.cache.get(config.verification).send(`<@${member.id}> has been granted <@&${phoenixRole.id}>. Please manually verify that this user is a Florida Poly Student.`);
-
-                await member.roles.add(phoenixRole.id)
-                .catch(() => console.error('TEMP role failed.'));
             }
             else {
                 console.info('SELECTED PATH C: A|2 F F')
@@ -154,6 +213,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
     if(reaction.message.partial)
     {
+        console.log(reaction.message)
         try {
             let msg = await reaction.message.fetch(); 
             //console.log(msg.id);
@@ -162,6 +222,13 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 console.log("Message is a partial, but is Now Cached")
                 applyRegistration();
             }
+            if (msg.id === config.verification)
+            {
+                console.log(true);
+                studentRegistration();
+            }
+            console.log(msg.id)
+            console.log(config.verification)
         }
         catch(err) {
             console.log(err);
@@ -170,9 +237,17 @@ client.on('messageReactionAdd', async (reaction, user) => {
     else 
     {
         console.log("Not a partial. Already Cached.");
+        console.log(reaction.message)
+        console.log(reaction.message.id)
+        console.log(config.verification)
         if(reaction.message.id === config.registration) {
-            console.log(true);
             applyRegistration();
+        }
+        
+        if (reaction.message.id === config.verification)
+        {
+            console.log(true);
+            studentRegistration();
         }
     }
 
