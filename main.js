@@ -1,3 +1,4 @@
+const { timeStamp } = require('console');
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION']});
 require('dotenv-flow').config();
@@ -16,6 +17,7 @@ const config = {
     testingChat: process.env.TESTINGCHAT,
     registration: process.env.REGISTRATION,
     verification: process.env.VERIFICATION,
+    server: process.env.SERVERNAME,
 };
 
 //command files using other .js files
@@ -83,72 +85,84 @@ client.on('message', message=>{
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
-
     let studentRegistration = async() => {
         console.log('STUDENT REGISTRATION STARTS HERE!!')
 
         let emojiName = reaction.emoji.name;
+        let memberRole = reaction.message.guild.roles.cache.find(role => role.name === '👍 Member');
         let phoenixRole = reaction.message.guild.roles.cache.find(role => role.name === '🔥 Florida Poly Student');
-        let member = reaction.message.guild.members.cache.find(member => member.id === user.id);
+        let id = reaction.message.embeds[0].fields[0].value.replace(/(<@|>)+/g, '')
+        let member = reaction.message.guild.members.cache.find(member => member.id === id);
+
+        //check is user is still member, if not then do nothing.
+        if (!member.roles.cache.some(role => role.id === memberRole.id)){
+            //change message color
+            const statusColor = reaction.message.embeds[0]
+            .setTitle('__**STUDENT VERIFICATION: ERROR**__')
+            .setDescription(`An ERROR occured! Some time has passed and ${user.id} is no longer a ${memberRole}. Student Verification cannot continue. A message has been sent to the user.\n\nPlease give user some time to regain membership status.`);
+            reaction.message.edit(statusColor)
+
+            member.send(`URGENT ${member}!\n\nYour verification request has an error. Some time has passed since your verification request and you no longer have the \`@ Member\` role. Student verification cannot continue.\n\nIn order to recieve the \`@ Florida Poly student\` role, you must be a \`@ Member\`. Please go the \`# Registration\` channel and agree to Programming_Club's server rules.`)
+            return
+        }
 
         try {                       
-            if(emojiName === '✅') {
+            if(emojiName === 'PhoenixPride') {
+                //change message color
+                const statusColor = reaction.message.embeds[0]
+                .setTitle('__**STUDENT VERIFICATION: APPROVED**__')
+                .setColor('#532D8E')
+                .setDescription(`User has been ***APPROVED*** the ${phoenixRole} role by <@${user.id}>. User's nickname has been changed and has been notified.`);
+                reaction.message.edit(statusColor)
 
-                //notify user DM
-                member.send(`🎊Congrats, ${member.name}!🎉\n\nYou have been granted the \`@ Florida Poly student\` role which allows you to get full access of this server.\n\nEnjoy!`)   
+                //change userName
+                const updateName = reaction.message.embeds[0].fields[1].value
+                await member.setNickname(updateName)
+                .catch((error) => console.error('NICKNAME CHANGE failed:' + error));
+
+                //add role to member
+                await member.roles.add(phoenixRole.id)
+                .catch(() => console.error('ADD PHOENIX role failed.'));
+
+                //send user DM
+                member.send(`🎊Congrats, ${member}!🎉\n\nYour verification request has been APPROVED. You have been GRANTED the \`@ Florida Poly student\` role which allows you to get full access of this server.\n\nHere's something to keep in mind while at Florida Poly:\n***"You only get out what you put in. Don't expect more until you do more."***\n\nHope this helps as you prepare for your career. In the meantime, enjoy your time at Florida Poly!\n\n**Go Phoenix!**`)
                 
-                //client.channels.cache.get(config.verification).send(`<@${member.id}> has been granted <@&${phoenixRole.id}>. Please manually verify that this user is a Florida Poly Student.`);
-
-                //change color of verification message
-                const exampleEmbed = new Discord.MessageEmbed()
-                .setColor('#26D30E')
-
-                console.log('----------------')
-                console.log(reaction.message)
-                console.log('----------------')
-
-                ////give role to member
-                // await member.roles.add(phoenixRole.id)
-                // .catch(() => console.error('ADD PHOENIX role failed.'));
+                const attachment = new Discord.MessageAttachment('./images/PhoenixPride.gif');
+                member.send(attachment)
 
             }
             else if(emojiName === '❌') {
+                //change message color
+                const statusColor = reaction.message.embeds[0]
+                .setTitle('__**STUDENT VERIFICATION: DENIED**__')
+                .setColor('#F03A17')
+                .setDescription(`User has been ***DENIED*** the ${phoenixRole} role by <@${user.id}>. User has been notified.`);
+                reaction.message.edit(statusColor)
+
                 //send user DM
-                member.send('Oh no!\n\nIt looks like your request has been denied. If you feel like this is an error, please reach out to any member of eboard to help you resolve this issue.\n\n Have a nice day!')    
-                
-                //change verification color to red
-
-                //deselect phoenix emoji in registration channel
-
-
+                member.send('Oh no!\n\nSory, but it looks like your verification request has been DENIED.\n\nIf you feel like this is an error, please reach out to a member of eboard to help you resolve this issue.\n\n Have a nice day!')    
             }
             else {
-                console.info('SELECTED PATH C: A|2 F F')
-                    
-                //remove PHOENIX role
-                await member.roles.remove(phoenixRole.id)
-                .catch(() => console.error('PHOENIX role does not exist for User.'));
-
+                
                 try {
-                    let msg = await reaction.message.fetch();
-                    const userReactions = await msg.reactions.cache.filter(reaction => reaction.users.cache.has(member.id));
+                    await reaction.message.reactions.removeAll()
+                    .catch((error) => console.error('NICKNAME CHANGE failed:' + error));
+
+                    // let msg = await reaction.message.fetch();
+                    // const userReactions = await msg.reactions.cache.filter(reaction => reaction.users.cache.has(member.id));
                         
-                    //it removes all reactions that was reacted (can be many selected)
-                    for (const react of userReactions.values()) {
-                        await react.users.remove(member.id);
-                        console.info('ALL Reactions Removed')
-                    }
+                    // //it removes all reactions that was reacted (can be many selected)
+                    // for (const react of userReactions.values()) {
+                    //     await react.users.remove(member.id);
+                    //     console.info('ALL Reactions Removed')
+                    // }
                 } catch (error) {
                     console.error('Failed to remove reactions.');
                 }
-
-                //remove MEMBER role
-                await member.roles.remove(memberRole.id)
-                .catch(() => console.error('MEMBER role does not exist for User.'));
             }
         }
         catch(err) {
-            console.log('FLPOLY STUDENT ROLE ERROR:\n' + err);
+            console.log('GRANT FLPOLY STUDENT ROLE ERROR:\n' + err);
         }
     }
 
@@ -158,6 +172,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
         let memberRole = reaction.message.guild.roles.cache.find(role => role.name === '👍 Member');
         let phoenixRole = reaction.message.guild.roles.cache.find(role => role.name === '🔥 Florida Poly Student');
         let member = reaction.message.guild.members.cache.find(member => member.id === user.id);
+
+
 
         //checks if a member has a certain role
         let userPHOENIX = member.roles.cache.some(role => role.id === phoenixRole.id)
@@ -213,7 +229,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
     if(reaction.message.partial)
     {
-        console.log(reaction.message)
+        //console.log(reaction.message)
         try {
             let msg = await reaction.message.fetch(); 
             //console.log(msg.id);
@@ -227,8 +243,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 console.log(true);
                 studentRegistration();
             }
-            console.log(msg.id)
-            console.log(config.verification)
+            //console.log(msg.id)
+            //console.log(config.verification)
         }
         catch(err) {
             console.log(err);
@@ -237,16 +253,14 @@ client.on('messageReactionAdd', async (reaction, user) => {
     else 
     {
         console.log("Not a partial. Already Cached.");
-        console.log(reaction.message)
-        console.log(reaction.message.id)
-        console.log(config.verification)
+        
         if(reaction.message.id === config.registration) {
             applyRegistration();
         }
         
-        if (reaction.message.id === config.verification)
+        if (reaction.message.channel.id === config.verification)
         {
-            console.log(true);
+            //console.log(true);
             studentRegistration();
         }
     }
@@ -254,6 +268,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 });
 
 client.on('messageReactionRemove', async (reaction, user) => {
+
     let removeRegistration = async () => {
 
         let emojiName = reaction.emoji.name;
@@ -326,6 +341,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
 
     if(reaction.message.partial)
     {
+        //console.log(reaction.message)
         try {
             let msg = await reaction.message.fetch(); 
             //console.log(msg.id);
@@ -334,6 +350,12 @@ client.on('messageReactionRemove', async (reaction, user) => {
                 console.log("Message is a partial, but is Now Cached")
                 removeRegistration();
             }
+            if (msg.id === config.verification)
+            {
+                return
+            }
+            //console.log(msg.id)
+            //console.log(config.verification)
         }
         catch(err) {
             console.log(err);
@@ -342,9 +364,14 @@ client.on('messageReactionRemove', async (reaction, user) => {
     else 
     {
         console.log("Not a partial. Already Cached.");
+        
         if(reaction.message.id === config.registration) {
-            console.log(true);
             removeRegistration();
+        }
+        
+        if (reaction.message.channel.id === config.verification)
+        {
+            return
         }
     }
 })
