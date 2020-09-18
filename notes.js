@@ -346,3 +346,37 @@ wfuVADU910+zktnURC43%}~
     // console.log('id:' + studentIdPASS)
 
 //
+// let list = [
+//     'CREATE_INSTANT_INVITE', 'KICK_MEMBERS',
+//     'BAN_MEMBERS',           'ADMINISTRATOR',
+//     'MANAGE_CHANNELS',       'MANAGE_GUILD',
+//     'ADD_REACTIONS',         'VIEW_AUDIT_LOG',
+//     'PRIORITY_SPEAKER',      'STREAM',
+//     'VIEW_CHANNEL',          'SEND_MESSAGES',
+//     'SEND_TTS_MESSAGES',     'MANAGE_MESSAGES',
+//     'EMBED_LINKS',           'ATTACH_FILES',
+//     'READ_MESSAGE_HISTORY',  'MENTION_EVERYONE',
+//     'USE_EXTERNAL_EMOJIS',   'VIEW_GUILD_INSIGHTS',
+//     'CONNECT',               'SPEAK',
+//     'MUTE_MEMBERS',          'DEAFEN_MEMBERS',
+//     'MOVE_MEMBERS',          'USE_VAD',
+//     'CHANGE_NICKNAME',       'MANAGE_NICKNAMES',
+//     'MANAGE_ROLES',          'MANAGE_WEBHOOKS',
+//     'MANAGE_EMOJIS'
+//   ]
+
+//   for (x in list){
+//       console.log(`${list[x]} \t\t` + reaction.message.guild.member(reaction.message.author).hasPermission(x))
+//   }
+
+// //NEW SEARCH using client info
+// let guildTEST = client.guilds.cache.find(guild => guild.name === config.server)
+// let memberTEST = guildTEST.members.cache.find(member => member.id === user.id)
+// let roleTEST = memberTEST.roles.cache.some(role => role.id === memberRole.id)
+// console.log('----------------------')
+// console.log(guildTEST)
+// console.log('----------------------')
+// console.log(memberTEST)
+// console.log('----------------------')
+// console.log(roleTEST)
+// console.log('----------------------')
