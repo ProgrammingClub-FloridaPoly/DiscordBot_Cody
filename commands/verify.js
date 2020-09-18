@@ -87,7 +87,7 @@ module.exports = {
         if (!(userMEMBER)) {
             console.log(`${message.author.name} attempted verification without Member role.`)
             //send user DM to resend verification command
-            member.send('Slow your role! I don\'t even know you. I only speak to \`@ Member\` roles of Programming Club. You must be a member before you can reach out to me.\n\n(Hint: Go to Registration for more info!)')
+            member.send('Slow your role! I don\'t even know you. I only speak to those with \`@ Member\` roles of Programming Club. You must be a member before you can reach out to me.\n\n(Hint: Go to Registration for more info!)')
             return;
         }
 
