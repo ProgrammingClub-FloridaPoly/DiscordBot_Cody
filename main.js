@@ -88,7 +88,16 @@ client.on('message', message=>{
 
 client.on('messageReactionAdd', async (reaction, user) => {
     let studentRegistration = async() => {
-        console.log('STUDENT REGISTRATION STARTS HERE!!')
+        
+        if (reaction.message.content != '' && reaction.emoji.name === '❓'){
+            
+            let extractID = reaction.message.content.replace(/[<@!]+|[a-zA-Z .>]+|&[0-9]+>/g, '')
+            let updateMember = reaction.message.guild.members.cache.find(member => member.id === extractID);
+
+            updateMember.send(`URGENT ${updateMember}` + '!\n\nI am reaching out to you because you were TEMPORARILY granted the \`@ Florida Poly Student\` role. Now, I need to verify that you are a Florida Poly Student.\n\nLet us begin the verification process to maintain this role. You will need to access the Cody Terminal in order to proceed. The Cody Terminal is accessed by typing in special commands in codeblocks. Codeblocks can be activated by typing three backquote symbols (**\\`\\`\\`**) before and after. The backquote symbol is located below the **ESC** key.\n\nAll commands must be typed like this example:\t***\\`\\`\\`>_cody <command>\\`\\`\\`***\n\n***Please enter the following commands, replacing with your information and removing < and >:***\n\`\`\`>_cody verify <Florida_Poly_student_email> <first_name> <last_name> <last_4_of_studentID>\`\`\`')
+
+            return
+        }
 
         let emojiName = reaction.emoji.name;
         let memberRole = reaction.message.guild.roles.cache.find(role => role.name === '👍 Member');
@@ -101,20 +110,22 @@ client.on('messageReactionAdd', async (reaction, user) => {
             //change message color
             const statusColor = reaction.message.embeds[0]
             .setTitle('__**STUDENT VERIFICATION: ERROR**__')
-            .setDescription(`An ERROR occured! Some time has passed and ${user.id} is no longer a ${memberRole}. Student Verification cannot continue. A message has been sent to the user.\n\nPlease give user some time to regain membership status.`);
+            .setColor('#FFFF00')
+            .setDescription(`An ERROR occured! Some time has passed and the user is no longer a ${memberRole}. Student Verification cannot continue. A message has been sent to the user.\n\nPlease give user some time to regain membership status.`);
             reaction.message.edit(statusColor)
 
-            member.send(`URGENT ${member}!\n\nYour verification request has an error. Some time has passed since your verification request and you no longer have the \`@ Member\` role. Student verification cannot continue.\n\nIn order to recieve the \`@ Florida Poly student\` role, you must be a \`@ Member\`. Please go the \`# Registration\` channel and agree to Programming_Club's server rules.`)
+            member.send(`URGENT ${member}!\n\nYour verification request has an error. Some time has passed since your verification request and you no longer have the \`@ Member\` role. Student verification cannot continue.\n\nIn order to recieve the \`@ Florida Poly Student\` role, you must be a \`@ Member\`. Please go the \`# Registration\` channel and agree to Programming_Club's server rules.`)
             return
         }
 
-        try {                       
+        try {
+
             if(emojiName === 'PhoenixPride') {
                 //change message color
                 const statusColor = reaction.message.embeds[0]
                 .setTitle('__**STUDENT VERIFICATION: APPROVED**__')
                 .setColor('#532D8E')
-                .setDescription(`User has been ***APPROVED*** the ${phoenixRole} role by <@${user.id}>. User's nickname has been changed and has been notified.`);
+                .setDescription(`User has been ***APPROVED*** the ${phoenixRole} role by <@${user.id}>. The user's nickname has been changed and a notification has been sent.`);
                 reaction.message.edit(statusColor)
 
                 //change userName
@@ -127,7 +138,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 .catch(() => console.error('ADD PHOENIX role failed.'));
 
                 //send user DM
-                member.send(`🎊Congrats, ${member}!🎉\n\nYour verification request has been APPROVED. You have been GRANTED the \`@ Florida Poly student\` role which allows you to get full access of this server.\n\nHere's something to keep in mind while at Florida Poly:\n***"You only get out what you put in. Don't expect more until you do more."***\n\nHope this helps as you prepare for your career. In the meantime, enjoy your time at Florida Poly!\n\n**Go Phoenix!**`)
+                member.send(`🎊Congrats, ${member}!🎉\n\nYour verification request has been APPROVED. You have been GRANTED the \`@ Florida Poly Student\` role which allows you to get full access of this server.\n\nHere's something to keep in mind while at Florida Poly:\n***"You only get out what you put in. Don't expect more until you do more."***\n\nHope this helps as you prepare for your career. In the meantime, enjoy your time at Florida Poly!\n\n**Go Phoenix!**`)
                 
                 const attachment = new Discord.MessageAttachment('./images/PhoenixPride.gif');
                 member.send(attachment)
@@ -142,7 +153,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 reaction.message.edit(statusColor)
 
                 //send user DM
-                member.send('Oh no!\n\nSory, but it looks like your verification request has been DENIED.\n\nIf you feel like this is an error, please reach out to a member of eboard to help you resolve this issue.\n\n Have a nice day!')    
+                member.send('Oh no!\n\nSorry, but it looks like your verification request has been DENIED.\n\nIf you feel like this is an error, please reach out to a member of eboard to help you resolve this issue.\n\nHave a nice day!')    
             }
             else {
                 
@@ -195,7 +206,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 console.info('SELECTED PATH B: A|2 T F')
                 
                 //send user DM to request verification ()
-                member.send('Welcome, DEV!\n\nMy name is **Cody**. I am Programming Club\'s smart bot assistant.\n\nLet\'s begin the verification process for obtaining the `@ Florida Poly student` role. This role allows you to get full access to this server. You will need to access the Cody Terminal in order to proceed. The Cody Terminal is accessed by typing in special commands in codeblocks. Codeblocks can be activated by typing three backquote symbols (**\\`\\`\\`**) before and after. The backquote symbol is located below the **ESC** key.\n\nAll commands must be typed like this example:\t***\\`\\`\\`>_cody <command>\\`\\`\\`***\n\n***Please enter the following commands, replacing with your information:***\n\`\`\`>_cody verify <Florida_Poly_student_email> <first_name> <last_name> <last_4_of_studentID>\`\`\`')             
+                member.send('Welcome, DEV!\n\nMy name is **Cody**. I am Programming Club\'s smart bot assistant.\n\nLet\'s begin the verification process for obtaining the `@ Florida Poly student` role. This role allows you to get full access to this server. You will need to access the Cody Terminal in order to proceed. The Cody Terminal is accessed by typing in special commands in codeblocks. Codeblocks can be activated by typing three backquote symbols (**\\`\\`\\`**) before and after. The backquote symbol is located below the **ESC** key.\n\nAll commands must be typed like this example:\t***\\`\\`\\`>_cody <command>\\`\\`\\`***\n\n***Please enter the following commands, replacing with your information and removing < and >:***\n\`\`\`>_cody verify <Florida_Poly_student_email> <first_name> <last_name> <last_4_of_studentID>\`\`\`')             
                 
 
             }
