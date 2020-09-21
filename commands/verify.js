@@ -95,10 +95,11 @@ module.exports = {
         if (argCheck(args)){
             //if true, begin verification
             verify(message, args, client)
-        }else{
+            member.send('Your verification request has been sent. Now we must wait...')  
 
+        }else{
             //send user DM to resend verification command
-            user.send('Sorry, it looks like something is wrong with your arguments.\n\n***Please enter the following commands, replacing with your information:***\n\`\`\`>_cody verify <Florida_Poly_student_email> <first_name> <last_name> <last_4_of_studentID>\`\`\`')  
+            member.send('Sorry, it looks like something is wrong with your arguments.\n\n***Please enter the following commands, replacing with your information and removing < and >:***\n\`\`\`>_cody verify <Florida_Poly_student_email> <first_name> <last_name> <last_4_of_studentID>\`\`\`\n\n')
         }
     }
 }
