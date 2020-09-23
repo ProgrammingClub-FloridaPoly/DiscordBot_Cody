@@ -380,3 +380,15 @@ wfuVADU910+zktnURC43%}~
 // console.log('----------------------')
 // console.log(roleTEST)
 // console.log('----------------------')
+
+                    // let msg = await reaction.message.fetch();
+                    // const userReactions = await msg.reactions.cache.filter(reaction => reaction.users.cache.has(member.id));
+                        
+                    // //it removes all reactions that was reacted (can be many selected)
+                    // for (const react of userReactions.values()) {
+                    //     await react.users.remove(member.id);
+                    //     console.info('ALL Reactions Removed')
+                    // }
+
+//
+//
