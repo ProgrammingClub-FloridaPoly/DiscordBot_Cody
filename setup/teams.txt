@@ -1,0 +1,27 @@
+**TEAMS**
+
+We have teams (committees) that specializes in different areas to help you develop and grow. Participating in a TEAM is a great way to develop essentials skills, regardless of your major. 
+
+Take a look at all of our TEAMS:
+
+<:AppDevTeam:745099193009569803> <@&729714663591510029>
+The **App Development Team** creates web and mobile applications in a variety of programming languages. No prior experience in needed. All you really need is the will to learn and have fun!
+
+<:CollegeLoopsTeam:745099192606916620> <@&729715057696702466>
+Have you ever heard of Girls who Code? They are an international non-profit organization working to lead the movement to inspire, educate, and equip young women with computing skills. **College Loops** is the college-level extension of Girls who Code, helping to create an inclusive community at Florida Poly. All genders are welcome to participate!
+
+<:CompetitiveTeam:745099192749260871> <@&729715273480798238>
+In **Competitive Team**, you learn how to solve problems and create solutions in a given time. There are two ways to participate:
+    • Competitive  Programming Competitions (ACM-ICPC, TopCoder, Google, etc.)
+    • Hackathons (MLH, Devpost, etc.)
+
+<:CybersecurityTeam:745099192443076620> <@&729714818113863771>
+Our **Cyber Team** is currently looking for students who want to learn offensive and defensive methods of cybersecurity. You can join either a BLUE (defensive) or RED (offensive) team.
+
+<:GameDevTeam:745099192560517182> <@&729715015078117376>
+Is gaming your passion? You'll fit right in our **Game Development Team**. Here we create fun and entertaining games.
+
+<:HackathonTeam:745099192078172211> <@&729714509098385448>
+PhoenixHacks is hackathon that we plan and host. Our **Hackathon Team** is looking for people who can help plan another successful hackathon at Florida Poly!
+
+***Want to join one of our TEAMS? React to their any TEAM's respective emoji. (You can join as many TEAMS as you can handle!)***
