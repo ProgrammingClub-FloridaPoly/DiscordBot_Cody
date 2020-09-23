@@ -97,7 +97,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             updateMember.send(`URGENT ${updateMember}` + '!\n\nI am reaching out to you because you were TEMPORARILY granted the \`@ Florida Poly Student\` role. Now, I need to verify that you are a Florida Poly Student.\n\nLet us begin the verification process to maintain this role. You will need to access the Cody Terminal in order to proceed. The Cody Terminal is accessed by typing in special commands in codeblocks. Codeblocks can be activated by typing three backquote symbols (**\\`\\`\\`**) before and after. The backquote symbol is located below the **ESC** key.\n\nAll commands must be typed like this example:\t***\\`\\`\\`>_cody <command>\\`\\`\\`***\n\n***Please enter the following commands, replacing with your information and removing < and >:***\n\`\`\`>_cody verify <Florida_Poly_student_email> <first_name> <last_name> <last_4_of_studentID>\`\`\`')
 
             return
-        }
+        }else(console.log("No Reaction??"))
 
         let emojiName = reaction.emoji.name;
         let memberRole = reaction.message.guild.roles.cache.find(role => role.name === '👍 Member');
@@ -253,7 +253,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             }
             if (msg.id === config.verification)
             {
-                console.log(true);
+                console.log("Message is a partial, but is Now Cached");
                 studentRegistration();
             }
             //console.log(msg.id)
