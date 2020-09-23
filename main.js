@@ -18,8 +18,7 @@ const config = {
     registration: process.env.REGISTRATION,
     verification: process.env.VERIFICATION,
     server: process.env.SERVERNAME,
-    //teams: process.env.TEAMS,
-    teams: process.env.DEVTEAMS,
+    teams: process.env.TEAMS,
 };
 
 //command files using other .js files
