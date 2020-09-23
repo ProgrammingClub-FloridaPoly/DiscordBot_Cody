@@ -21,6 +21,8 @@ const config = {
     //verification: process.env.VERIFICATION,
     verification: process.env.DEVVERIFICATION,
     server: process.env.SERVERNAME,
+    //teams: process.env.TEAMS,
+    teams: process.env.DEVTEAMS,
 };
 
 //command files using other .js files
@@ -87,6 +89,48 @@ client.on('message', message=>{
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
+    let teamSignup = async() => {
+        let emojiName = reaction.emoji.name;
+        let appDev = reaction.message.guild.roles.cache.find(role => role.name === 'App Dev Team');
+        let collegeLoops = reaction.message.guild.roles.cache.find(role => role.name === 'College Loops Team');
+        let competitive = reaction.message.guild.roles.cache.find(role => role.name === 'Competitive Team');
+        let cyber = reaction.message.guild.roles.cache.find(role => role.name === 'Cyber Team');
+        let gameDev = reaction.message.guild.roles.cache.find(role => role.name === 'Game Dev Team');
+        let hackathon = reaction.message.guild.roles.cache.find(role => role.name === 'Hackathon Team');
+        let member = reaction.message.guild.members.cache.find(member => member.id === user.id);
+
+        try {
+
+            if (emojiName === 'AppDevTeam') {
+                await member.roles.add(appDev.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'CollegeLoopsTeam') {
+                await member.roles.add(collegeLoops.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'CompetitiveTeam') {
+                await member.roles.add(competitive.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'CyberTeam') {
+                await member.roles.add(cyber.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'GameDevTeam') {
+                await member.roles.add(gameDev.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'HackathonTeam') {
+                await member.roles.add(hackathon.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+        }
+        catch(err) {
+            console.log('TEAM ROLE ADD ERROR:\n' + err);
+        }
+    }
+
     let studentRegistration = async() => {
         
         if (reaction.message.content != '' && reaction.emoji.name === '❓'){
@@ -97,7 +141,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             updateMember.send(`URGENT ${updateMember}` + '!\n\nI am reaching out to you because you were TEMPORARILY granted the \`@ Florida Poly Student\` role. Now, I need to verify that you are a Florida Poly Student.\n\nLet us begin the verification process to maintain this role. You will need to access the Cody Terminal in order to proceed. The Cody Terminal is accessed by typing in special commands in codeblocks. Codeblocks can be activated by typing three backquote symbols (**\\`\\`\\`**) before and after. The backquote symbol is located below the **ESC** key.\n\nAll commands must be typed like this example:\t***\\`\\`\\`>_cody <command>\\`\\`\\`***\n\n***Please enter the following commands, replacing with your information and removing < and >:***\n\`\`\`>_cody verify <Florida_Poly_student_email> <first_name> <last_name> <last_4_of_studentID>\`\`\`')
 
             return
-        }else(console.log("No Reaction??"))
+        }
 
         let emojiName = reaction.emoji.name;
         let memberRole = reaction.message.guild.roles.cache.find(role => role.name === '👍 Member');
@@ -161,14 +205,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     await reaction.message.reactions.removeAll()
                     .catch((error) => console.error('NICKNAME CHANGE failed:' + error));
 
-                    // let msg = await reaction.message.fetch();
-                    // const userReactions = await msg.reactions.cache.filter(reaction => reaction.users.cache.has(member.id));
-                        
-                    // //it removes all reactions that was reacted (can be many selected)
-                    // for (const react of userReactions.values()) {
-                    //     await react.users.remove(member.id);
-                    //     console.info('ALL Reactions Removed')
-                    // }
+                    
                 } catch (error) {
                     console.error('Failed to remove reactions.');
                 }
@@ -245,19 +282,22 @@ client.on('messageReactionAdd', async (reaction, user) => {
         //console.log(reaction.message)
         try {
             let msg = await reaction.message.fetch(); 
-            //console.log(msg.id);
             if(msg.id === config.registration)
             {
                 console.log("Message is a partial, but is Now Cached")
                 applyRegistration();
             }
-            if (msg.id === config.verification)
+            if (msg.channel.id === config.verification)
             {
                 console.log("Message is a partial, but is Now Cached");
                 studentRegistration();
             }
-            //console.log(msg.id)
-            //console.log(config.verification)
+
+            if (msg.id === config.teams)
+            {
+                console.log("Message is a partial, but is Now Cached");
+                teamSignup();
+            }
         }
         catch(err) {
             console.log(err);
@@ -273,14 +313,64 @@ client.on('messageReactionAdd', async (reaction, user) => {
         
         if (reaction.message.channel.id === config.verification)
         {
-            //console.log(true);
             studentRegistration();
+        }
+
+        if (reaction.message.id === config.teams)
+        {
+            teamSignup();
         }
     }
 
 });
 
 client.on('messageReactionRemove', async (reaction, user) => {
+    let teamRemoval = async() => {
+        console.log('TEAMS SIGNUP START HERE')
+
+        let emojiName = reaction.emoji.name;
+        let appDev = reaction.message.guild.roles.cache.find(role => role.name === 'App Dev Team');
+        let collegeLoops = reaction.message.guild.roles.cache.find(role => role.name === 'College Loops Team');
+        let competitive = reaction.message.guild.roles.cache.find(role => role.name === 'Competitive Team');
+        let cyber = reaction.message.guild.roles.cache.find(role => role.name === 'Cyber Team');
+        let gameDev = reaction.message.guild.roles.cache.find(role => role.name === 'Game Dev Team');
+        let hackathon = reaction.message.guild.roles.cache.find(role => role.name === 'Hackathon Team');
+
+        let member = reaction.message.guild.members.cache.find(member => member.id === user.id);
+
+        try {
+
+            if (emojiName === 'AppDevTeam') {
+                await member.roles.remove(appDev.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'CollegeLoopsTeam') {
+                await member.roles.remove(collegeLoops.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'CompetitiveTeam') {
+                await member.roles.remove(competitive.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'CyberTeam') {
+                await member.roles.remove(cyber.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'GameDevTeam') {
+                await member.roles.remove(gameDev.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+            else if (emojiName === 'HackathonTeam') {
+                await member.roles.remove(hackathon.id)
+                .catch(() => console.error('ADD TEAMS role failed.'));
+            }
+        }
+        catch(err) {
+            console.log('TEAM ROLE REMOVAL ERROR:\n' + err);
+        }
+
+
+    }
 
     let removeRegistration = async () => {
 
@@ -357,18 +447,20 @@ client.on('messageReactionRemove', async (reaction, user) => {
         //console.log(reaction.message)
         try {
             let msg = await reaction.message.fetch(); 
-            //console.log(msg.id);
             if(msg.id === config.registration)
             {
                 console.log("Message is a partial, but is Now Cached")
                 removeRegistration();
             }
-            if (msg.id === config.verification)
+            if (msg.channel.id === config.verification)
             {
                 return
             }
-            //console.log(msg.id)
-            //console.log(config.verification)
+
+            if (msg.id === config.teams)
+            {
+                teamRemoval();
+            }
         }
         catch(err) {
             console.log(err);
@@ -385,6 +477,11 @@ client.on('messageReactionRemove', async (reaction, user) => {
         if (reaction.message.channel.id === config.verification)
         {
             return
+        }
+
+        if (reaction.message.id === config.teams)
+        {
+            teamRemoval();
         }
     }
 })
