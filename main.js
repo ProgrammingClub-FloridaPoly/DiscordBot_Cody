@@ -110,7 +110,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 await member.roles.add(competitive.id)
                 .catch(() => console.error('ADD TEAMS role failed.'));
             }
-            else if (emojiName === 'CyberTeam') {
+            else if (emojiName === 'CybersecurityTeam') {
                 await member.roles.add(cyber.id)
                 .catch(() => console.error('ADD TEAMS role failed.'));
             }
