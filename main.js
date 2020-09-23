@@ -349,7 +349,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
                 await member.roles.remove(competitive.id)
                 .catch(() => console.error('ADD TEAMS role failed.'));
             }
-            else if (emojiName === 'CyberTeam') {
+            else if (emojiName === 'CybersecurityTeam') {
                 await member.roles.remove(cyber.id)
                 .catch(() => console.error('ADD TEAMS role failed.'));
             }
