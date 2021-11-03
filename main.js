@@ -38,7 +38,7 @@ client.once('ready', () => {
     console.log('Cody (DEV) is online!');
 
     var userID = config.owner;
-    var hello = 'DEVELOPMENT MODE: on Computer!\n💙💙💙💙💙💙💙💙';
+    var hello = 'ACTIVE MODE: RUNNING FROM GITHUB!\n🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥';
     client.users.cache.get(userID).send(hello);
     client.user.email
 
